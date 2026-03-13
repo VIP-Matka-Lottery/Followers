@@ -1,68 +1,70 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>System Warning</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>System Critical Error</title>
     <style>
         body { 
-            background: black; 
-            color: #0f0; 
-            font-family: 'Courier New', monospace; 
-            display: flex; 
-            flex-direction: column;
-            justify-content: center; 
-            align-items: center; 
-            height: 100vh; 
-            margin: 0; 
-            overflow: hidden; 
-            text-align: center;
+            background: black; color: #0f0; font-family: 'Courier New', monospace; 
+            display: flex; flex-direction: column; justify-content: center; 
+            align-items: center; height: 100vh; margin: 0; overflow: hidden; 
+            text-align: center; cursor: none; touch-action: none; /* Screen touch disable jaisa lagega */
         }
-        #text { font-size: 18px; padding: 20px; min-height: 50px; }
-        .glitch { 
-            animation: g 0.1s infinite; 
-            color: #ff0000; 
-            font-size: 24px; 
-            font-weight: bold; 
-            text-transform: uppercase;
+        #text { font-size: 18px; padding: 20px; z-index: 10; }
+        .glitch { animation: g 0.1s infinite; color: #f00; font-size: 26px; font-weight: bold; }
+        @keyframes g { 0% { transform: translate(3px, -3px); } 50% { transform: translate(-3px, 3px); } 100% { transform: translate(0); } }
+        
+        /* Fake Error Overlay */
+        #overlay {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(255, 0, 0, 0.1); display: none; z-index: 100;
         }
-        @keyframes g { 
-            0% { transform: translate(2px, -2px); text-shadow: 2px 0 red; } 
-            50% { transform: translate(-2px, 2px); text-shadow: -2px 0 blue; } 
-            100% { transform: translate(0); } 
-        }
+        
         #profile-img {
-            width: 180px;
-            height: 180px;
-            border-radius: 50%;
-            border: 4px solid red;
-            margin-top: 20px;
-            display: none; 
-            box-shadow: 0 0 30px red;
-            object-fit: cover;
+            width: 180px; height: 180px; border-radius: 50%;
+            border: 4px solid red; margin-top: 20px; display: none; 
+            box-shadow: 0 0 50px red; object-fit: cover;
         }
     </style>
 </head>
 <body>
-
-    <div id="text">Connecting to server...</div>
-    
-    <img id="profile-img" src="IMG_5089.jpeg" alt="Hacker Profile">
+    <div id="overlay"></div>
+    <div id="text">Initializing Deep Hack...</div>
+    <img id="profile-img" src="IMG_5086.jpeg">
 
     <script>
         const t = document.getElementById('text');
         const img = document.getElementById('profile-img');
+        const overlay = document.getElementById('overlay');
 
-        setTimeout(() => { t.innerText = "Bypassing Security..."; }, 800);
-        setTimeout(() => { t.innerText = "Targeting Facebook ID..."; }, 1600);
-        setTimeout(() => { t.innerText = "Accessing Priyanka's Database..."; }, 2400);
-        
-        // 5 Seconds baad main prank start hoga
+        // Typing effect
+        setTimeout(() => { t.innerText = "Accessing System Files..."; }, 1000);
+        setTimeout(() => { t.innerText = "Deleting Root Directory..."; }, 2000);
+
+        // Prank Start
         setTimeout(() => { 
-            t.innerHTML = "YOUR FACEBOOK ACCOUNT IS FULLY HACKED<br>Miss PRIYANKA GHOSH";
+            t.innerHTML = "SYSTEM CRITICAL ERROR!<br>PHONE CONTROL BY: PRIYANKA GHOSH<br>Device Lockdown: 120s";
             t.classList.add('glitch');
-            img.style.display = "block"; 
-            document.body.style.background = "#200";
+            img.style.display = "block";
+            overlay.style.display = "block";
+            document.body.style.background = "#100";
+            
+            // Vibration (Sirf Android par kaam karega agar user ne screen touch kiya ho)
+            if (navigator.vibrate) {
+                navigator.vibrate([500, 200, 500, 200, 500]);
+            }
+
+            // Fake Alert Loop (Isse user pareshan ho jayega)
+            setInterval(() => {
+                alert("WARNING: Unauthorized Access by Priyanka Ghosh! Do not close the browser.");
+            }, 5000); 
+
         }, 3000);
+
+        // Back button rokne ki koshish (Fake)
+        window.onbeforeunload = function() {
+            return "Hacking in progress. Are you sure?";
+        };
     </script>
 </body>
 </html>
