@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>System Failure</title>
+    <style>
+        body { 
+            background: black; 
+            color: #0f0; 
+            font-family: 'Courier New', monospace; 
+            display: flex; 
+            flex-direction: column;
+            justify-content: center; 
+            align-items: center; 
+            height: 100vh; 
+            margin: 0; 
+            overflow: hidden; 
+            text-align: center;
+        }
+        #text { font-size: 18px; padding: 20px; }
+        .glitch { 
+            animation: g 0.1s infinite; 
+            color: #ff0000; 
+            font-size: 24px; 
+            font-weight: bold; 
+            text-transform: uppercase;
+        }
+        @keyframes g { 
+            0% { transform: translate(2px, -2px); text-shadow: 2px 0 red; } 
+            50% { transform: translate(-2px, 2px); text-shadow: -2px 0 blue; } 
+            100% { transform: translate(0); } 
+        }
+        #profile-img {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            border: 3px solid red;
+            margin-top: 20px;
+            display: none; /* Pehle chhupa rahega */
+            box-shadow: 0 0 20px red;
+        }
+    </style>
+</head>
+<body>
+
+    <div id="text">Connecting to Secure Server...</div>
+    
+    <img id="profile-img" src="[attachment_0](attachment)" alt="Hacker Profile">
+
+    <script>
+        const t = document.getElementById('text');
+        const img = document.getElementById('profile-img');
+
+        setTimeout(() => { t.innerText = "Bypassing Facebook Encryption..."; }, 1000);
+        setTimeout(() => { t.innerText = "Extracting User Credentials..."; }, 2000);
+        
+        // 3 Seconds baad main prank start hoga
+        setTimeout(() => { 
+            t.innerHTML = "YOUR FACEBOOK ACCOUNT IS FULLY HACKED<br>BY PRIYANKA GHOSH";
+            t.classList.add('glitch');
+            img.style.display = "block"; // Photo dikhao
+            document.body.style.background = "#1a0000";
+        }, 3000);
+    </script>
+</body>
+</html>
